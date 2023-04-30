@@ -22,8 +22,11 @@ dp: Dispatcher = Dispatcher()
 def random_number() -> int:
     return random.randint(1, 100)
 
+async def start_filter(message:Message) -> bool:
+    return message.text == '/start'
 
-@dp.message(Command(commands=['start']))
+
+@dp.message(start_filter)
 async def process_start_command(message: Message):
     await message.answer('Привет,давай сыграем.\nПомощь- /help')
 
